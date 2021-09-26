@@ -10,7 +10,7 @@ public class Environment {
 
     public synchronized final static String getIPAddress() {
         return (IPAddress == null && (IPAddress = System.getenv(PREFIX + "ADDRESS")) == null)
-            ? IPAddress = "0.0.0.0"
+            ? IPAddress = "127.0.0.1"
             : IPAddress;
     }
 
