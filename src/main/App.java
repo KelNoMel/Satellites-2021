@@ -146,7 +146,7 @@ public class App {
                             request.queryParams("toId"));
                     return "";
                 } catch (FileTransferException ex) {
-                    return ex.getMessage();
+                    return ex.getClass().getSimpleName() + ":" + ex.getMessage();
                 }
             }
         }, gson::toJson);
