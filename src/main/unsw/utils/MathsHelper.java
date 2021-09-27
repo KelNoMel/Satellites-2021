@@ -35,7 +35,7 @@ public final class MathsHelper {
      * Determine if a satellite is visible to a device.
      */
     public static boolean isVisible(double satelliteHeight, Angle satelliteAngle, Angle deviceAngle) {
-        return getDistance(satelliteHeight, satelliteAngle, deviceAngle) < satelliteHeight;
+        return isVisible(satelliteHeight, satelliteAngle, RADIUS_OF_JUPITER + 50, deviceAngle);
     }
 
     /**
@@ -106,6 +106,8 @@ public final class MathsHelper {
 
         // in our specific case we are going to only allow t \in [0, 1]
         // because we are okay with it being the tangent, just not going *through*
-        return !((0 <= tPos && tPos <= 1) || (0 <= tNeg && tNeg <= 1));
+        return !( // we are going to check if they intersect, then the opposite of that will tell us visibility
+            ((0 <= tPos && tPos <= 1) || (0 <= tNeg && tNeg <= 1))       // for them to intersect we need to be within range
+        );
     }
 }
