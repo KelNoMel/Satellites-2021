@@ -30,12 +30,12 @@ public class Task2ExampleTests {
         // Creates 1 satellite and 2 devices
         // Gets a device to send a file to a satellites and gets another device to download it.
         // StandardSatellites are slow and transfer 1 byte per minute.
-        controller.createSatellite("Satellite1", "StandardSatellite", 100 + RADIUS_OF_JUPITER, Angle.fromDegrees(320));
-        controller.createSatellite("Satellite2", "StandardSatellite", 100 + RADIUS_OF_JUPITER, Angle.fromDegrees(315));
+        controller.createSatellite("Satellite1", "StandardSatellite", 1000 + RADIUS_OF_JUPITER, Angle.fromDegrees(320));
+        controller.createSatellite("Satellite2", "StandardSatellite", 1000 + RADIUS_OF_JUPITER, Angle.fromDegrees(315));
         controller.createDevice("DeviceB", "LaptopDevice", Angle.fromDegrees(310));
         controller.createDevice("DeviceC", "HandheldDevice", Angle.fromDegrees(320));
         controller.createDevice("DeviceD", "HandheldDevice", Angle.fromDegrees(180));
-        controller.createSatellite("Satellite3", "StandardSatellite", 200 + RADIUS_OF_JUPITER, Angle.fromDegrees(160));
+        controller.createSatellite("Satellite3", "StandardSatellite", 2000 + RADIUS_OF_JUPITER, Angle.fromDegrees(160));
 
         assertListAreEqualIgnoringOrder(Arrays.asList("DeviceB", "DeviceC", "Satellite2"), controller.communicableEntitiesInRange("Satellite1"));
         assertListAreEqualIgnoringOrder(Arrays.asList("DeviceB", "DeviceC", "Satellite1"), controller.communicableEntitiesInRange("Satellite2"));
@@ -52,7 +52,7 @@ public class Task2ExampleTests {
         // Creates 1 satellite and 2 devices
         // Gets a device to send a file to a satellites and gets another device to download it.
         // StandardSatellites are slow and transfer 1 byte per minute.
-        controller.createSatellite("Satellite1", "StandardSatellite", 100 + RADIUS_OF_JUPITER, Angle.fromDegrees(320));
+        controller.createSatellite("Satellite1", "StandardSatellite", 5000 + RADIUS_OF_JUPITER, Angle.fromDegrees(320));
         controller.createDevice("DeviceB", "LaptopDevice", Angle.fromDegrees(310));
         controller.createDevice("DeviceC", "HandheldDevice", Angle.fromDegrees(320));
 
@@ -90,7 +90,7 @@ public class Task2ExampleTests {
         // Creates 1 satellite and 2 devices
         // Gets a device to send a file to a satellites and gets another device to download it.
         // StandardSatellites are slow and transfer 1 byte per minute.
-        controller.createSatellite("Satellite1", "StandardSatellite", 100 + RADIUS_OF_JUPITER, Angle.fromDegrees(320));
+        controller.createSatellite("Satellite1", "StandardSatellite", 10000 + RADIUS_OF_JUPITER, Angle.fromDegrees(320));
         controller.createDevice("DeviceB", "LaptopDevice", Angle.fromDegrees(310));
         controller.createDevice("DeviceC", "HandheldDevice", Angle.fromDegrees(320));
 
