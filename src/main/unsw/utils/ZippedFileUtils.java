@@ -77,8 +77,6 @@ public final class ZippedFileUtils {
             out.append(contents);
         }
 
-        if (out.toString().length() > contents.length())
-            return contents;
         return out.toString();
     }
 }
