@@ -60,9 +60,9 @@ public class Task2ExtraTests {
         BlackoutController controller = new BlackoutController();
 
         // Creates 1 satellite and 2 devices
-        controller.createSatellite("Satellite1", "ShrinkingSatellite", 100 + RADIUS_OF_JUPITER, Angle.fromDegrees(320));
+        controller.createSatellite("Satellite1", "ShrinkingSatellite", 1000 + RADIUS_OF_JUPITER, Angle.fromDegrees(320));
         controller.createDevice("DeviceA", "HandheldDevice", Angle.fromDegrees(320));
-        controller.createDevice("DeviceB", "LaptopDevice", Angle.fromDegrees(310));
+        controller.createDevice("DeviceB", "LaptopDevice", Angle.fromDegrees(315));
 
         // uploads at a rate of 15 per minute so we'll give it 21 bytes which when compressed is 14
         String msg = "hello quantum how are";
