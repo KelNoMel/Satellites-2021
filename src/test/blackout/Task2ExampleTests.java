@@ -35,7 +35,7 @@ public class Task2ExampleTests {
         controller.createDevice("DeviceB", "LaptopDevice", Angle.fromDegrees(310));
         controller.createDevice("DeviceC", "HandheldDevice", Angle.fromDegrees(320));
         controller.createDevice("DeviceD", "HandheldDevice", Angle.fromDegrees(180));
-        controller.createSatellite("Satellite3", "StandardSatellite", 2000 + RADIUS_OF_JUPITER, Angle.fromDegrees(160));
+        controller.createSatellite("Satellite3", "StandardSatellite", 2000 + RADIUS_OF_JUPITER, Angle.fromDegrees(175));
 
         assertListAreEqualIgnoringOrder(Arrays.asList("DeviceB", "DeviceC", "Satellite2"), controller.communicableEntitiesInRange("Satellite1"));
         assertListAreEqualIgnoringOrder(Arrays.asList("DeviceB", "DeviceC", "Satellite1"), controller.communicableEntitiesInRange("Satellite2"));
