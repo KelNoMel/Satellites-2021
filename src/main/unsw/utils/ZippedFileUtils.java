@@ -44,7 +44,8 @@ public final class ZippedFileUtils {
     }
 
     private static boolean isZipped(byte[] data) {
-        return (data[0] == (byte) (GZIPInputStream.GZIP_MAGIC))
+        return data.length >= 2 &&
+                (data[0] == (byte) (GZIPInputStream.GZIP_MAGIC))
                 && (data[1] == (byte) (GZIPInputStream.GZIP_MAGIC >> 8));
     }
 
@@ -57,9 +58,8 @@ public final class ZippedFileUtils {
         }
 
         StringBuilder out = new StringBuilder();
-        byte[] data = Base64.getDecoder().decode(contents.getBytes());
-
-        if (isZipped(data)) {
+        if (isZipped(contents)) {
+            byte[] data = Base64.getDecoder().decode(contents.getBytes());
             try (GZIPInputStream gzip = new GZIPInputStream(new ByteArrayInputStream(data))) {
                 try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(gzip))) {
                     String line;
