@@ -32,16 +32,16 @@ public class BlackoutController {
         // TODO: Task 1a)
         switch(type) {
             case "HandheldDevice":
-                HandHeldDevice newDevice = new HandHeldDevice(deviceId, position);
-                devices.put(newDevice.objectId, newDevice);
+                HandHeldDevice newHandheld = new HandHeldDevice(deviceId, position);
+                devices.put(newHandheld.objectId, newHandheld);
                 break;
             case "LaptopDevice":
-                LaptopDevice newDevice = new LaptopDevice(deviceId, position);
-                devices.put(newDevice.objectId, newDevice);
+                LaptopDevice newLaptop = new LaptopDevice(deviceId, position);
+                devices.put(newLaptop.objectId, newLaptop);
                 break;
             case "DesktopDevice":
-                DesktopDevice newDevice = new DesktopDevice(deviceId, position);
-                devices.put(newDevice.objectId, newDevice);
+                DesktopDevice newDesktop = new DesktopDevice(deviceId, position);
+                devices.put(newDesktop.objectId, newDesktop);
                 break;
         }
     }
@@ -56,18 +56,17 @@ public class BlackoutController {
         // TODO: Task 1c)
         switch (type) {
             case "StandardSatellite":
-                StandardSatellite newSatellite = new StandardSatellite(satelliteId, position, height);
-                satellites.put(newSatellite.objectId, newSatellite);
+                StandardSatellite newStandard = new StandardSatellite(satelliteId, position, height);
+                satellites.put(newStandard.objectId, newStandard);
                 break;
             case "ShrinkingSatellite":
-                ShrinkingSatellite newSatellite = new ShrinkingSatellite(satelliteId, position, height);
-                satellites.put(newSatellite.objectId, newSatellite);
+                ShrinkingSatellite newShrinking = new ShrinkingSatellite(satelliteId, position, height);
+                satellites.put(newShrinking.objectId, newShrinking);
                 break;
             case "RelaySatellite":
-                RelaySatellite newSatellite = new RelaySatellite(satelliteId, position, height);
-                satellites.put(newSatellite.objectId, newSatellite);
+                RelaySatellite newRelay = new RelaySatellite(satelliteId, position, height);
+                satellites.put(newRelay.objectId, newRelay);
                 break;
-        }
     }
 
     public void removeSatellite(String satelliteId) {
@@ -77,11 +76,10 @@ public class BlackoutController {
 
     public List<String> listDeviceIds() {
         // TODO: Task 1e)
-        Set<Integer> setOfKeys = devices.keySet();
- 
-        // Iterating through the Hashtable
-        // object using for-Each loop
-        for (String key : setOfKeys) {
+        List<String> deviceList = new ArrayList<String>();
+        String key;
+        for (String key : devices) {
+            // Print and display the Rank and Name
             deviceList.add(key);
         }
         return deviceList;
