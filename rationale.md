@@ -50,6 +50,9 @@ The Satellite has byte/file storage limits as well as upload/download limits. Ho
 
 Since most satellites orbit similarly (same direction/formula), we have a shared travel() method. However this is ovewritten by the RelaySatellite which has its' own pattern.
 
+The manageStorage() method allows all satellites to keep within their storage limits, it's performed when files are altered (simulate() and sendFile()).
+All satellites perform this method, which also accounts for no limit fields
+
 # Satellite Subclasses
 
 # StandardSatellite

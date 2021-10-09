@@ -143,6 +143,7 @@ public class BlackoutController {
             // Check all files and monitor those that are incomplete
             Helper.satDownloads(sat, conns, devices, satellites);
             Helper.satUploads(sat, conns, devices, satellites);
+            sat.manageStorage();
         }
 
         // Simulate devices
@@ -230,6 +231,14 @@ public class BlackoutController {
         
         // All conditions passed, add file to receiver with 0 bytes transferred
         recObj.addFile(fileName, sendFile.getData(), 0, false, sendFile.getPrevOwner());
+
+        // Do storage management for satellites if receiver
+        recObj = satellites.get(toId);
+        if (recObj != null) {
+            Satellite cleanSat = satellites.get(toId);
+            cleanSat.manageStorage();
+        }
+
     }
 
     public static void main(String[] args) {
@@ -254,9 +263,6 @@ public class BlackoutController {
 
         
         controller.simulate();
-        assertEquals(new FileInfoResponse("FileAlpha", "H", 2, false), controller.getInfo("Satellite4").getFiles().get("FileAlpha"));
-        controller.simulate();
-        assertEquals(new FileInfoResponse("FileAlpha", "Hi", 2, true), controller.getInfo("Satellite4").getFiles().get("FileAlpha"));
 
     }
 }
