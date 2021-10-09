@@ -5,11 +5,18 @@ import unsw.other.File;
 
 public class Device extends NetworkObject {
 
-    private static double height = 69911;
+    /**
+     * Default Constructor
+     */
+    public Device() {
+        super();
+    }
 
-    public void addFile(String filename, String content) {
-        int len = content.length();
-        File newFile = new File(filename, content, len, len, "finished");
-        this.files.add(newFile);
+    @Override
+    public String toString() {
+        String output = ("I am " + objectId + " at position " + position
+                            + " degrees, " + height + " high and "
+                            + "am a " + type + " device");
+        return output;
     }
 }

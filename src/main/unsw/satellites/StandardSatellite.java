@@ -6,12 +6,16 @@ import unsw.utils.Angle;
 import unsw.other.File;
 
 public class StandardSatellite extends Satellite{
-    final int byteLimit = 80;
-    final int fileLimit = 3;
-    final int sendRate = 1;
-    final int receiveRate = 1;
     
+    /**
+     * Constructor for RelaySatellite
+     * @param objId
+     * @param pos
+     * @param hght
+     * All other fields are hardcoded
+     */
     public StandardSatellite(String objId, Angle pos, double hght) {
+        super();
         objectId = objId;
         position = pos;
         height = hght;
@@ -19,6 +23,14 @@ public class StandardSatellite extends Satellite{
         type = "StandardSatellite";
         files = new ArrayList<File>();
         maxRange = 150000;
-        exclusion = "DesktopDevice";
+        byteLimit = 80;
+        fileLimit = 3;
+        sendRate = 1;
+        receiveRate = 1;
+        compatible.add("HandheldDevice");
+        compatible.add("LaptopDevice");
+        compatible.add("CloudStorageDevice");
+        compatible.add("StandardSatellite");
+        compatible.add("ShrinkingSatellite");
     }
 }

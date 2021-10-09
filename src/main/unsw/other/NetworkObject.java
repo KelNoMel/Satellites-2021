@@ -1,36 +1,39 @@
 package unsw.other;
 
-import java.util.List;
-import java.util.Hashtable;
+import java.util.ArrayList;
+import java.util.Map;
+import java.util.HashMap;
 
 import unsw.utils.Angle;
-//import unsw.response.models.EntityInfoResponse;
+import unsw.response.models.EntityInfoResponse;
+import unsw.response.models.FileInfoResponse;
 
 public class NetworkObject {
     public String objectId;
     public Angle position;
     public double height;
     public String type;
-    public List<File> files;
+    public ArrayList<File> files;
     public double maxRange;
-    public String exclusion;
+    public ArrayList<String> compatible;
 
     /**
-     * Sends file to the device, also making sure that all the
-     * conditions for transfer are met (valid object type, in-range,
-     * line of sight etc.)
-     * @param device
-     * @param file
-     * TODO: Math stuff
+     * Default constructor for NetworkObject
      */
-    //public void sendFile(String device, String file) {
-    //    excludeList = this.exclusions;
+    public NetworkObject() {
+        objectId = "Default";
+        position = Angle.fromDegrees(10);
+        height = 0;
+        type = "Default";
+        files = new ArrayList<File>();
+        maxRange = 0;
+        compatible = new ArrayList<String>();
+    }
 
-        //if (device in exclusions) {
-        //    dont;
-        //}
-    //}
-
+    public String getObjectId() {
+        return objectId;
+    }
+    
     public Angle getPosition() {
         return position;
     }
@@ -47,8 +50,12 @@ public class NetworkObject {
         return maxRange;
     }
 
-    public String getExclusion() {
-        return exclusion;
+    public ArrayList<File> getFiles() {
+        return files;
+    }
+
+    public ArrayList<String> getCompatible() {
+        return compatible;
     }
 
     public void setPosition(Angle position) {
@@ -63,12 +70,33 @@ public class NetworkObject {
      * type (String)
      * files (Map<String, FileInfoResponse>)
     */
-    //public void getInfo() {
+    public EntityInfoResponse getInfo() {
 
-    //     Convert files list into correct type
-        //List<Files> files = this.files;
+        // Convert files list into correct type
+        Map<String, FileInfoResponse> firMap = new HashMap<String, FileInfoResponse>();
+        for (File x : files) {
+            FileInfoResponse fir = new FileInfoResponse(x.getFilename(), x.getData().substring(0, x.getCurrentSize()), x.getFileSize(), x.getStatus());
+            firMap.put(x.getFilename(), fir);
+        }
         
-    //    Map<String, FileInfoResponse> firList = new HashMap<>();
-    //    return EntityInfoResponse(this.objectId, this.position, this.height, this.type, firList);
-    //}
+        EntityInfoResponse eir = new EntityInfoResponse(objectId, position, height, type, firMap);
+        return eir;
+    }
+
+    public boolean isCompatible(String type) {
+        for (String entry : compatible) {
+            if (type == entry) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    // Adds a file to NetworkObject files field
+    public void addFile(String filename, String content, int current, boolean status, String prevOwner) {
+        int len = content.length();
+        File newFile = new File(filename, content, len, current, status);
+        newFile.setPrevOwner(prevOwner);
+        this.files.add(newFile);
+    }
 }
